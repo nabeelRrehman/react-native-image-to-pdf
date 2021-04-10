@@ -88,7 +88,8 @@ public class RNImageToPdf extends ReactContextBaseJavaModule {
             }
 
             // write the document content
-            File targetPath = reactContext.getExternalFilesDir(null);
+            // File targetPath = reactContext.getExternalFilesDir(null);
+            String targetPath = options.getString("targetPath");
             File filePath = new File(targetPath, documentName);
             document.writeTo(new FileOutputStream(filePath));
             log.info(format("Wrote %,d bytes to %s", filePath.length(), filePath.getPath()));
