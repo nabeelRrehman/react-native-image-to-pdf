@@ -26,18 +26,9 @@ or
 
 #### Android
 
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.anyline.RNImageToPDF.RNImageToPdfPackage;` to the imports at the top of the file
-  - Add `new RNImageToPdfPackage()` to the list returned by the `getPackages()` method
-2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-image-to-pdf'
-  	project(':react-native-image-to-pdf').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-image-to-pdf/android')
-  	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-image-to-pdf')
-  	```
+1. Open up `android/app/src/main/java/[...]/RNImageToPdf.java`
+  - Comment Line No 91 `File targetPath = reactContext.getExternalFilesDir(null);`
+  - Add this Line `String targetPath = options.getString("targetPath");` 
 
 
 ## Usage
@@ -54,6 +45,7 @@ const myAsyncPDFFunction = async () => {
 				width: 900,
 				height: Math.round(deviceHeight() / deviceWidth() * 900),
 			},
+			targetPath: '/storage/emulated/0',
 			quality: .7, // optional compression paramter
 		};
 		const pdf = await RNImageToPdf.createPDFbyImages(options);
